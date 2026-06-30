@@ -114,15 +114,45 @@ python -m glasscode results.json ./mon_projet
 
 ## 🤖 Utilisation comme skill Claude Code
 
+### Installation du skill
+
 Copie le dossier dans tes skills personnels :
 
 ```bash
 cp -r glasscode ~/.claude/skills/glasscode
 ```
 
-Ensuite, dans Claude Code, demande simplement *« audite ce code »*, *« scan de
-sécurité »* ou *« cherche les vulnérabilités »* — le skill se déclenche, lance
-Semgrep et affiche le rapport. Le contrat du skill est dans [`SKILL.md`](SKILL.md).
+Le skill est alors chargé automatiquement par Claude Code (contrat dans
+[`SKILL.md`](SKILL.md)). Pas besoin de commande spéciale : il se déclenche tout
+seul quand ta demande concerne un audit.
+
+### Phrases qui déclenchent le skill
+
+Dans une session Claude Code, écris simplement (en langage naturel) :
+
+| Tu écris... | Ce que fait Claude |
+|---|---|
+| `audite ce code` | scanne le dossier courant et affiche le rapport |
+| `fais un audit de sécurité du dossier ./src` | scanne `./src` |
+| `cherche les vulnérabilités dans mon projet` | scan complet + findings critiques |
+| `scan des secrets / clés API exposées` | utilise les règles `p/secrets` |
+| `vérifie la qualité du code` | scan qualité + score global |
+| `check OWASP top 10` | utilise les règles `p/owasp-top-ten` |
+| `compare avant/après mes corrections` | refait un scan et diff le nombre de findings |
+
+Mots-clés qui activent le skill : **audit, scan, sécurité, vulnérabilités,
+review, qualité, secrets, code smell**.
+
+### Ce que Claude fait pour toi
+
+1. Vérifie/installe `semgrep` et `rich` si besoin
+2. Lance le scan Semgrep sur le chemin demandé
+3. Affiche le **rapport visuel** (tableau coloré + score + top 3 des corrections)
+4. Te résume les corrections prioritaires en français
+5. Ne modifie **jamais** ton code sans te demander confirmation
+
+> 💡 Astuce : précise le chemin (`audite ./backend`) et le focus
+> (`scan sécurité uniquement`) pour cibler l'analyse.
 
 ---
 
