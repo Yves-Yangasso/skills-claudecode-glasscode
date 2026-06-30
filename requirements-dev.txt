@@ -1,0 +1,3 @@
+-r requirements.txt
+pytest>=7.0
+semgrep>=1.0

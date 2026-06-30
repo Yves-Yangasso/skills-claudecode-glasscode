@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "glasscode"
+version = "1.0.0"
+description = "Rapports d'audit qualité & sécurité visuels à partir de Semgrep, pour le terminal et la CI."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Jean-Yves Yangasso", email = "yangassojeanyves@gmail.com" }]
+keywords = ["security", "code-quality", "semgrep", "audit", "sast", "cli", "claude-code"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Security",
+    "Topic :: Software Development :: Quality Assurance",
+    "Environment :: Console",
+]
+dependencies = ["rich>=13.0"]
+
+[project.optional-dependencies]
+scan = ["semgrep>=1.0"]
+dev = ["pytest>=7.0"]
+
+[project.urls]
+Homepage = "https://github.com/yangassojeanyves/glasscode"
+Issues = "https://github.com/yangassojeanyves/glasscode/issues"
+
+[project.scripts]
+glasscode = "glasscode.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["glasscode*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
