@@ -39,24 +39,60 @@ pip install "glasscode[scan]"   # installe semgrep en plus
 
 ## 🧑‍💻 Utilisation
 
-### 1. Scanner avec Semgrep
+### ⚡ Démarrage rapide (copier-coller)
+
+```bash
+# 1. installer (avec le scanner Semgrep)
+pip install "glasscode[scan]"
+
+# 2. scanner ton projet -> produit un JSON
+semgrep --config=auto --json --quiet -o results.json ./mon_projet
+
+# 3. afficher le rapport visuel
+glasscode results.json ./mon_projet
+```
+
+C'est tout : tu obtiens le tableau coloré, le score et les corrections prioritaires.
+
+### Détail des deux étapes
+
+**1. Scanner avec Semgrep** (génère le JSON brut) :
 
 ```bash
 semgrep --config=auto --json --quiet -o results.json ./mon_projet
 ```
 
-### 2. Afficher le rapport
+Configs ciblées possibles : `p/security-audit`, `p/owasp-top-ten`, `p/secrets`.
+
+**2. Afficher le rapport** avec GlassCode :
 
 ```bash
-glasscode results.json ./mon_projet            # rapport console coloré
-glasscode results.json ./mon_projet -f json    # sortie machine (CI)
-glasscode results.json --fail-under 80         # échoue si score < 80
+glasscode results.json ./mon_projet            # rapport console coloré (défaut)
+glasscode results.json ./mon_projet -f json    # sortie machine (CI / tooling)
+glasscode results.json ./mon_projet --fail-under 80   # échoue si score < 80
 ```
 
-Sans installation, depuis le dépôt :
+Sans rien installer, directement depuis le dépôt cloné :
 
 ```bash
 python -m glasscode results.json ./mon_projet
+```
+
+### Options de la commande
+
+| Argument | Description |
+|---|---|
+| `report` | Chemin du JSON produit par `semgrep --json` *(obligatoire)* |
+| `root` | Dossier scanné — chemins relatifs + calcul du score *(optionnel)* |
+| `-f`, `--format` | `rich` (défaut, console colorée) ou `json` (machine) |
+| `--fail-under N` | Renvoie le code de sortie `1` si le score est `< N` (gate CI) |
+
+### Exemple d'intégration CI (GitHub Actions)
+
+```yaml
+- run: pip install "glasscode[scan]"
+- run: semgrep --config=auto --json -o results.json .
+- run: glasscode results.json . --fail-under 80   # bloque le merge si trop de failles
 ```
 
 #### Aperçu
