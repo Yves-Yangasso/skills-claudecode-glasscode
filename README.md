@@ -2,7 +2,7 @@
 
 > Rends ton code **transparent** : un audit qualité & sécurité (via [Semgrep](https://semgrep.dev)) présenté sous forme de rapport visuel coloré dans le terminal — tableau par sévérité, score global et corrections prioritaires.
 
-[![CI](https://github.com/yangassojeanyves/glasscode/actions/workflows/ci.yml/badge.svg)](https://github.com/yangassojeanyves/glasscode/actions)
+[![CI](https://github.com/Yves-Yangasso/skills-claudecode-glasscode/actions/workflows/ci.yml/badge.svg)](https://github.com/Yves-Yangasso/skills-claudecode-glasscode/actions)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
@@ -23,10 +23,10 @@ GlassCode fonctionne en autonomie **et** comme [skill Claude Code](#-utilisation
 ## 🚀 Installation
 
 ```bash
-pip install glasscode          # depuis PyPI (si publié)
+pip install glasscode          # depuis PyPI
 # ou, depuis les sources :
-git clone https://github.com/yangassojeanyves/glasscode
-cd glasscode && pip install .
+git clone https://github.com/Yves-Yangasso/skills-claudecode-glasscode
+cd skills-claudecode-glasscode && pip install .
 ```
 
 Pour lancer les scans, il te faut aussi Semgrep :

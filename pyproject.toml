@@ -25,8 +25,8 @@ scan = ["semgrep>=1.0"]
 dev = ["pytest>=7.0"]
 
 [project.urls]
-Homepage = "https://github.com/yangassojeanyves/glasscode"
-Issues = "https://github.com/yangassojeanyves/glasscode/issues"
+Homepage = "https://github.com/Yves-Yangasso/skills-claudecode-glasscode"
+Issues = "https://github.com/Yves-Yangasso/skills-claudecode-glasscode/issues"
 
 [project.scripts]
 glasscode = "glasscode.cli:main"

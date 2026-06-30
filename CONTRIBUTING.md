@@ -5,8 +5,8 @@ Merci de ton intérêt ! 🪟
 ## Mettre en place l'environnement
 
 ```bash
-git clone https://github.com/yangassojeanyves/glasscode
-cd glasscode
+git clone https://github.com/Yves-Yangasso/skills-claudecode-glasscode
+cd skills-claudecode-glasscode
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 pytest -q
